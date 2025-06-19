@@ -19,7 +19,7 @@ class cors
 
         $response->headers->set(
             'Access-Control-Allow-Origin',
-            'http://127.0.0.1:5000'
+            'https://ecnet.website'
         );
         $response->headers->set('Access-Control-Allow-Credentials', 'true');
         $response->headers->set(
