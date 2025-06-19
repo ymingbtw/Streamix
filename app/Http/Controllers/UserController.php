@@ -171,11 +171,11 @@ class UserController extends Controller
             $jwt, // value
             0, // minutes
             '/', // path
-            null, // domain (null = current)
-            false, // secure: true in production with HTTPS
+            '.ecnet.website', // domain (null = current)
+            true, // secure: true in production with HTTPS
             false, // httpOnly
             false, // raw (leave false)
-            'Lax' // SameSite: 'Lax', 'Strict', or 'None'
+            'None' // SameSite: 'Lax', 'Strict', or 'None'
         );
 
         return response()
