@@ -16,7 +16,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         //
-        $middleware->append([HandleCors::class, cors::class]);
+        $middleware->append([HandleCors::class]);
         $middleware->group('web', []);
         $middleware->group('api', []);
     })
