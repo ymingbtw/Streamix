@@ -12,7 +12,10 @@ class GenreController extends Controller
     public function mainGenres()
     {
         $genres = Genre::orderBy('genre')->limit(10)->get();
-        return response()->json($genres);
+        return response()->json([
+            'isAuthorized' => true,
+            'genres' => $genres,
+        ]);
     }
 
     public function query($genre)
@@ -21,7 +24,10 @@ class GenreController extends Controller
             ->limit(10)
             ->get();
 
-        return response()->json($genres);
+        return response()->json([
+            'isAuthorized' => true,
+            'genres' => $genres,
+        ]);
     }
     public function topGenres()
     {
@@ -37,6 +43,9 @@ class GenreController extends Controller
             ->limit(3)
             ->get();
 
-        return response()->json($topGenres);
+        return response()->json([
+            'isAuthorized' => true,
+            'genres' => $topGenres,
+        ]);
     }
 }

@@ -56,6 +56,7 @@ class MovieController extends Controller
             'next_part' => $next_part,
             'sub_total' => min(10, $sub_total),
             'total' => $total,
+            'isAuthorized' => true,
             'movies' => $movies->take(10)->values(), // reset indices
         ]);
     }
@@ -78,12 +79,16 @@ class MovieController extends Controller
             'backdrop' => $movie->backdrop,
             'video' => $movie->video,
             'genres' => $movie->genres->pluck('genre', 'id'),
+            'isAuthorized' => true,
         ]);
     }
     public function hero()
     {
         $randomMovie = Movie::inRandomOrder()->first();
-        return response()->json($randomMovie);
+        return response()->json([
+            'isAuthorized' => true,
+            'movies' => $randomMovie,
+        ]);
     }
 
     public function insert(Request $request)
@@ -127,6 +132,7 @@ class MovieController extends Controller
             'success' => true,
             'msg' => 'Movie added successfully.',
             'movie_id' => $movieModel->id,
+            'isAuthorized' => true,
         ]);
     }
 
@@ -153,6 +159,7 @@ class MovieController extends Controller
             return response()->json([
                 'success' => true,
                 'msg' => 'movie has been updated',
+                'isAuthorized' => true,
             ]);
         } else {
             // Handle movie not found
@@ -178,6 +185,7 @@ class MovieController extends Controller
             return response()->json([
                 'status' => 304,
                 'error' => 'movie not found',
+                'isAuthorized' => true,
             ]);
         }
     }
