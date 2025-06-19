@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return response('not found');
+});
 Route::get('/movies/{movie}', function ($movie) {
     return response()->file(base_path() . '/movies/' . $movie . '/index.m3u8');
 });
