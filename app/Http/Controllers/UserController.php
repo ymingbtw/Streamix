@@ -69,20 +69,24 @@ class UserController extends Controller
                 ],
             ]);
         }
-        $user = User::create([
-            'id' => Str::uuid(),
-            'name' => $nameResult['value'],
-            'email' => $emailResult['value'],
-            'password' => Hash::make($passwordResult['value']),
-        ]);
-        // Attach 'user' role to the new user
         $role = \App\Models\Role::where('name', 'user')->first();
         if ($role) {
+            $user = User::create([
+                'id' => Str::uuid(),
+                'name' => $nameResult['value'],
+                'email' => $emailResult['value'],
+                'password' => Hash::make($passwordResult['value']),
+            ]);
             $user->roles()->attach($role->id);
+            return response()->json([
+                'success' => true,
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'cant register at the moment',
+            ]);
         }
-        return response()->json([
-            'success' => true,
-        ]);
     }
 
     public function signin(Request $request)
@@ -154,7 +158,7 @@ class UserController extends Controller
         }
 
         $payload = [
-            'role' => $user->roles->first()->name ?? 'guest',
+            'role' => $user->roles->first()->name,
             'iss' => 'streamix', // Issuer
             'sub' => $user->id, // Subject (user id)
             'iat' => time(), // Issued at
