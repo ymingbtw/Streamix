@@ -7,8 +7,6 @@
 /storage/pail
 /vendor
 .env
-/movies/
-/public/images/
 .env.backup
 .env.production
 .phpactor.json
