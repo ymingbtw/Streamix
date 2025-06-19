@@ -44,6 +44,7 @@ class AuthController extends Controller
                     'message' => 'you are authenticated',
                     'isAuthenticated' => true,
                     'role' => $decoded->role,
+                    'token' => $token,
                 ],
                 200
             );
