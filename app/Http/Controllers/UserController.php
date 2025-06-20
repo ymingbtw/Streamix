@@ -187,7 +187,7 @@ class UserController extends Controller
     }
     public function signout(Request $request)
     {
-        $token = $request->bearerToken(); // gets token from Authorization header
+        $token = $request->bearerToken();
 
         if (!$token) {
             return response()->json([
@@ -197,13 +197,10 @@ class UserController extends Controller
         }
 
         try {
-            $secretKey = env('JWT_SECRET'); // your secret key
+            $secretKey = env('JWT_SECRET');
 
-            // Decode the token
             $decoded = JWT::decode($token, new Key($secretKey, 'HS256'));
 
-            // $decoded is an object with the JWT payload
-            // You can check user info, expiration, etc. here
             DB::table('blacklisted_tokens')->insert([
                 'token' => $token,
                 'expires_at' => $decoded->exp,

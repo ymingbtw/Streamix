@@ -17,7 +17,7 @@ class MovieController extends Controller
     {
         $title = $request->query('title');
         $genre = $request->query('genre');
-        $part = max(1, (int) $request->query('part', 1)); // default to 1 if missing
+        $part = max(1, (int) $request->query('part', 1));
 
         $query = Movie::with([
             'genres' => fn($q) => $q->select('id', 'genre'),
@@ -57,7 +57,7 @@ class MovieController extends Controller
             'sub_total' => min(10, $sub_total),
             'total' => $total,
             'isAuthorized' => true,
-            'movies' => $movies->take(10)->values(), // reset indices
+            'movies' => $movies->take(10)->values(),
         ]);
     }
 
@@ -138,9 +138,8 @@ class MovieController extends Controller
 
     public function update(Request $request)
     {
-        $movieId = $request->input('id'); // The UUID of the movie to update
+        $movieId = $request->input('id');
 
-        // Find the movie by ID
         $movie = Movie::find($movieId);
 
         if ($movie) {
