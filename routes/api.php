@@ -34,7 +34,3 @@ Route::middleware([isAdmin::class])->group(function () {
 
 Route::post('/signin', [UserController::class, 'signin']);
 Route::post('/register', [UserController::class, 'register']);
-
-Route::fallback(function () {
-    return redirect('/'); // or a 404 view or custom page
-});

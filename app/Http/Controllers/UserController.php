@@ -214,6 +214,7 @@ class UserController extends Controller
                     'message' => 'you are signed out',
                     'success' => true,
                     'status' => 200,
+                    'isAuthorized' => true,
                 ])
                 ->withoutCookie('auth_token', '/');
         } catch (ExpiredException $e) {
