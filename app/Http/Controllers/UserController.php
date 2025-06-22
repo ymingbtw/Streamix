@@ -171,7 +171,7 @@ class UserController extends Controller
             $jwt, // value
             0, // minutes
             '/', // path
-            '.ecnet.website', // domain (null = current)
+            '.ecnet.space', // domain (null = current)
             true, // secure: true in production with HTTPS
             false, // httpOnly
             false, // raw (leave false)
