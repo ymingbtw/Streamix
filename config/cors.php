@@ -18,7 +18,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['https://ecnet.website'],
+    'allowed_origins' => ['https://ecnet.space', 'http://127.0.0.1:5000'],
 
     'allowed_origins_patterns' => [],
 
